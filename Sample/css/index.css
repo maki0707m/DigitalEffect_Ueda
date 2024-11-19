@@ -21,7 +21,7 @@ header{
 }
 #circle{
     fill: #fff;
-    /* animation: resize 2s 11s linear forwards; */
+    animation: resize 2s 11s linear forwards;
 }
 @keyframes resize {
     0% {
