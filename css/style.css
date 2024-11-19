@@ -1,0 +1,187 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #4b4b4b;
+}
+html{
+  font-size: 62.5%;
+}
+a{
+    text-decoration: none;
+}
+svg{
+    position: absolute;
+    width: 100%;
+    height: 700px;
+}
+header{
+    height: 80px;
+    background-color: lightgreen;
+}
+#circle{
+    fill: #fff;
+    /* animation: resize 2s 11s linear forwards; */
+}
+@keyframes resize {
+    0% {
+        r: 0;
+    }
+    100% {
+        r: 100%;
+    }
+}
+.mainVisual{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 700px;
+    overflow: hidden;
+}
+.mainVisual__back{
+    position: absolute;
+    width: 100%;
+    height: 700px;
+    background-color: #A3CBB2;
+    background-image: url(../assets/img/Frame165.png);
+    background-position: bottom left;
+    mask: url(#mask);
+    animation: mainVisual__back 10s linear infinite;
+}
+@keyframes mainVisual__back{
+    from{
+        background-position: bottom left;
+    }
+    to{
+        background-position: 0 700px;
+    }
+}
+.mainVisual__arrow{
+    position: absolute;
+    height: 100px;
+    animation: mainVisual__arrow 5s linear forwards,
+    fullTurn 10s linear infinite;
+}
+@keyframes mainVisual__arrow{
+    to{
+        height: 600px;
+    }
+}
+@keyframes fullTurn{
+    from{
+        transform: rotateZ(0);
+    }
+    to{
+        transform: rotateZ(360deg);
+    }
+}
+.mainVisual__bee{
+    opacity: 0;
+    animation: makeDisplay 2s 9s linear forwards;
+}
+@keyframes makeDisplay{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+.mainVisual__textContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-45px);
+    opacity: 0;
+    animation:  makeDisplay 2s 5s linear forwards,
+     resetTransform 2s 7s linear forwards;
+}
+@keyframes resetTransform{
+    to{
+        transform: none;
+    }
+}
+.mainVisual__text{
+    font-family: BIZ UDPGothic;
+    font-size: 31px;
+    font-weight: 700;
+    line-height: 31px;
+    letter-spacing: 0.15em;
+}
+.mainVisual__text.--sub{
+    font-family: BIZ UDPGothic;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.15em;
+}
+.mainVisual__links{
+    position: absolute;
+    display: flex;
+    column-gap: 550px;
+    opacity: 0;
+    pointer-events: none;
+    animation: makeDisplay 2s 13s forwards,
+    makeDisplayBlock 2s 13s forwards
+}
+@keyframes makeDisplayBlock{
+    to{
+        pointer-events: auto;
+    }
+}
+.pageTransition__link{
+    border-radius: 50%;
+    transform: scale(0.1);
+    transition: transform 2s;
+}
+.pageTransition__link.hovered{
+    transform: scale(1);
+}
+.pageTransitionButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px 20px #fff;
+}
+.pageTransition__container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    opacity: 0;
+    transition: opacity 2s;
+}
+.pageTransition__container.hovered{
+    opacity: 1;
+}
+.pageTransitionButton::before,.pageTransitionButton::after{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 110%;
+    height: 110%;
+    border: 2px solid #fff;
+    border-radius: 60% 80%;
+    animation: fullTurn 10s linear infinite;
+}
+.pageTransitionButton::after{
+    animation: fullTurn 8s linear reverse infinite;
+}
+.pageTransition__image{
+    height: 158px;
+}
+.pageTransition__text{
+    font-family: BIZ UDPGothic;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.03em;
+}
