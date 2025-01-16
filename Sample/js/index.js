@@ -11,21 +11,24 @@ boxes.forEach(box => {
 
 });
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     const links = document.querySelectorAll('.pageTransition__link');
-//     links.forEach(link => {
-//         let isExpanded = false; // タッチ状態を追跡
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= 649) { // SP版のみ適用
+        const leftArea = document.querySelector('.mainVisual__sideArea--left');
+        const rightArea = document.querySelector('.mainVisual__sideArea--right');
+        const linksContainer = document.querySelector('.mainVisual__links');
 
-//         link.addEventListener('touchstart', (e) => {
-//             if (!isExpanded) {
-//                 e.preventDefault(); // 初回タッチでリンク移動を無効化
-//                 link.classList.add('hovered');
-//                 link.querySelector('.pageTransition__container').classList.add('hovered');
-//                 isExpanded = true; // 次のタッチでリンク移動を許可
-//             } else {
-//                 window.location.href = link.href; // リンク先に移動
-//             }
-//         });
-//     });
-// });
+        // リンクの入れ替え関数
+        function swapLinks() {
+            const links = Array.from(linksContainer.children);
+            linksContainer.innerHTML = ''; // 一度すべてクリア
+            links.reverse().forEach(link => linksContainer.appendChild(link)); // 順序を逆転して再配置
+        }
+
+        // 左右エリアのクリックでリンクを入れ替え
+        leftArea.addEventListener('click', swapLinks);
+        rightArea.addEventListener('click', swapLinks);
+    }
+});
+
+
 
