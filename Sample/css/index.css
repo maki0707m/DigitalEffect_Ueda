@@ -1,25 +1,25 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     color: #4b4b4b;
 }
-html{
-  font-size: 62.5%;
+html {
+    font-size: 62.5%;
 }
-a{
+a {
     text-decoration: none;
 }
-svg{
+svg {
     position: absolute;
     width: 100%;
     height: 700px;
 }
-header{
+header {
     height: 80px;
     background-color: lightgreen;
 }
-#circle{
+#circle {
     fill: #fff;
     animation: resize 2s 11s linear forwards;
 }
@@ -31,7 +31,7 @@ header{
         r: 100%;
     }
 }
-.mainVisual{
+.mainVisual {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@ header{
     height: 700px;
     overflow: hidden;
 }
-.mainVisual__back{
+.mainVisual__back {
     position: absolute;
     width: 100%;
     height: 700px;
@@ -50,96 +50,93 @@ header{
     mask: url(#mask);
     animation: mainVisual__back 10s linear infinite;
 }
-@keyframes mainVisual__back{
-    from{
+@keyframes mainVisual__back {
+    from {
         background-position: bottom left;
     }
-    to{
+    to {
         background-position: 0 700px;
     }
 }
-.mainVisual__arrow{
+.mainVisual__arrow {
     position: absolute;
     height: 100px;
-    animation: mainVisual__arrow 5s linear forwards,
-    fullTurn 10s linear infinite;
+    animation: mainVisual__arrow 5s linear forwards, fullTurn 10s linear infinite;
 }
-@keyframes mainVisual__arrow{
-    to{
+@keyframes mainVisual__arrow {
+    to {
         height: 600px;
     }
 }
-@keyframes fullTurn{
-    from{
+@keyframes fullTurn {
+    from {
         transform: rotateZ(0);
     }
-    to{
+    to {
         transform: rotateZ(360deg);
     }
 }
-.mainVisual__bee{
+.mainVisual__bee {
     opacity: 0;
     animation: makeDisplay 2s 9s linear forwards;
 }
-@keyframes makeDisplay{
-    from{
+@keyframes makeDisplay {
+    from {
         opacity: 0;
     }
-    to{
+    to {
         opacity: 1;
     }
 }
-.mainVisual__textContainer{
+.mainVisual__textContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     transform: translateY(-45px);
     opacity: 0;
-    animation:  makeDisplay 2s 5s linear forwards,
-     resetTransform 2s 7s linear forwards;
+    animation: makeDisplay 2s 5s linear forwards, resetTransform 2s 7s linear forwards;
 }
-@keyframes resetTransform{
-    to{
+@keyframes resetTransform {
+    to {
         transform: none;
     }
 }
-.mainVisual__text{
+.mainVisual__text {
     font-family: BIZ UDPGothic;
     font-size: 31px;
     font-weight: 700;
     line-height: 31px;
     letter-spacing: 0.15em;
 }
-.mainVisual__text.--sub{
+.mainVisual__text.--sub {
     font-family: BIZ UDPGothic;
     font-size: 20px;
     font-weight: 700;
     line-height: 20px;
     letter-spacing: 0.15em;
 }
-.mainVisual__links{
+.mainVisual__links {
     position: absolute;
     display: flex;
     column-gap: 550px;
     opacity: 0;
     pointer-events: none;
-    animation: makeDisplay 2s 13s forwards,
-    makeDisplayBlock 2s 13s forwards
+    animation: makeDisplay 2s 13s forwards, makeDisplayBlock 2s 13s forwards;
 }
-@keyframes makeDisplayBlock{
-    to{
+@keyframes makeDisplayBlock {
+    to {
         pointer-events: auto;
     }
 }
-.pageTransition__link{
+.pageTransition__link {
     border-radius: 50%;
     transform: scale(0.1);
     transition: transform 2s;
 }
-.pageTransition__link.hovered{
+.pageTransition__link.hovered {
     transform: scale(1);
 }
-.pageTransitionButton{
+.pageTransitionButton {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -149,7 +146,7 @@ header{
     border-radius: 50%;
     box-shadow: 0 0 20px 20px #fff;
 }
-.pageTransition__container{
+.pageTransition__container {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -159,10 +156,11 @@ header{
     opacity: 0;
     transition: opacity 2s;
 }
-.pageTransition__container.hovered{
+.pageTransition__container.hovered {
     opacity: 1;
 }
-.pageTransitionButton::before,.pageTransitionButton::after{
+.pageTransitionButton::before,
+.pageTransitionButton::after {
     content: "";
     position: absolute;
     display: block;
@@ -172,13 +170,13 @@ header{
     border-radius: 60% 80%;
     animation: fullTurn 10s linear infinite;
 }
-.pageTransitionButton::after{
+.pageTransitionButton::after {
     animation: fullTurn 8s linear reverse infinite;
 }
-.pageTransition__image{
+.pageTransition__image {
     height: 158px;
 }
-.pageTransition__text{
+.pageTransition__text {
     font-family: BIZ UDPGothic;
     font-size: 20px;
     font-weight: 700;
@@ -189,7 +187,6 @@ header{
 /* SP版実装 */
 
 @media screen and (max-width: 649px) {
-
     .mainVisual__back {
         background-size: auto 300px;
         background-repeat: repeat;
@@ -286,10 +283,43 @@ header{
         line-height: 14px;
     }
 
-    .pageTransition__link{
-        border-radius: 50%;
+    .pageTransition__link {
         transform: scale(1);
-        transition: none;
+        opacity: 1;
+        z-index: 1;
+    }
+    
+    .pageTransition__link.front {
+        z-index: 10;
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+    .pageTransition__link.back {
+        z-index: 5;
+        opacity: 0.9;
+        transform: scale(0.9);
+    }
+
+    /* 前面のリンク */
+    .pageTransition__link.front {
+        transform: translateX(0) scale(1);
+        z-index: 10;
+        opacity: 1;
+    }
+
+    /* 後面のリンクが左から前に */
+    .pageTransition__link.toFront {
+        transform: translateX(-50%) scale(0.9);
+        z-index: 5;
+        opacity: 1;
+    }
+
+    /* 前面のリンクが右から後ろへ */
+    .pageTransition__link.toBack {
+        transform: translateX(50%) scale(0.9);
+        z-index: 1;
+        opacity: 0.9;
     }
 
     .mainVisual__links {
@@ -306,10 +336,17 @@ header{
         font-size: 16px;
         line-height: 16px;
     }
-    
-    .pageTransitionButton{
+
+    .pageTransitionButton {
         width: 220px;
         height: 220px;
+    }
+
+    .pageTransitionButton::before {
+        display: none;
+    }
+    .pageTransitionButton::after {
+        display: none;
     }
 
     .pageTransition__container {
@@ -321,9 +358,10 @@ header{
         height: 100px;
     }
 
-    .pageTransition__text{
+    .pageTransition__text {
         font-size: 16px;
     }
+    
 
     .mainVisual__sideArea {
         position: absolute;
