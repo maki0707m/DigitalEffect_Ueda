@@ -183,36 +183,33 @@ header {
     line-height: 20px;
     letter-spacing: 0.03em;
 }
-
-/* SP版実装 */
-
 @media screen and (max-width: 649px) {
+    .mainVisual {
+        height: 844px;
+    }
     .mainVisual__back {
+        height: 844px;
         background-size: auto 300px;
         background-repeat: repeat;
         animation: mainVisual__back-sp 10s linear infinite;
     }
-
     @keyframes mainVisual__back-sp {
         from {
             background-position: bottom left;
         }
         to {
-            background-position: 0 700px;
+            background-position: 0 844px;
         }
     }
-
     .mainVisual__arrow {
         height: 50px;
         animation: mainVisual__arrow-sp 5s linear forwards, fullTurn 10s linear infinite, fadeOut 5s linear forwards 5s;
     }
-
     @keyframes mainVisual__arrow-sp {
         to {
             height: 320px;
         }
     }
-
     @keyframes fadeOut {
         0%, 80% {
             opacity: 1;
@@ -221,7 +218,6 @@ header {
             opacity: 0;
         }
     }
-
     @keyframes fullTurn {
         from {
             transform: rotateZ(0deg);
@@ -230,13 +226,11 @@ header {
             transform: rotateZ(360deg);
         }
     }
-
     .mainVisual__bee {
         height: 60px;
         opacity: 0;
         animation: makeDisplay-sp 2s 9s linear forwards, moveUpAfterDelay 2s 12s ease-out forwards;
     }
-
     @keyframes makeDisplay-sp {
         from {
             opacity: 0;
@@ -245,146 +239,126 @@ header {
             opacity: 1;
         }
     }
-
-    /* 新しいアニメーション: 数秒停止後、上に移動 */
     @keyframes moveUpAfterDelay {
         0% {
-            transform: translateY(0); /* 初期位置 */
+            transform: translateY(0); 
         }
         50% {
-            transform: translateY(0); /* 停止位置 */
+            transform: translateY(0);
         }
         100% {
-            transform: translateY(-150px);
+            transform: translateY(-260px);
         }
     }
-
     .mainVisual__text {
         margin-bottom: 10px;
         font-size: 20px;
         line-height: 20px;
         animation: moveTextUpAfterDelay 2s 12s ease-out forwards;
     }
-
     @keyframes moveTextUpAfterDelay {
         0% {
-            transform: translateY(0); /* 初期位置 */
+            transform: translateY(0); 
         }
         50% {
-            transform: translateY(0); /* 停止位置 */
+            transform: translateY(0);
         }
         100% {
-            transform: translateY(-150px);
+            transform: translateY(-260px);
         }
     }
-
     .mainVisual__text.--sub {
         font-size: 14px;
         line-height: 14px;
     }
-
     .pageTransition__link {
         transform: scale(1);
         opacity: 1;
         z-index: 1;
     }
-    
-    .pageTransition__link.front {
-        z-index: 10;
-        opacity: 1;
-        transform: scale(1);
-    }
-    
-    .pageTransition__link.back {
-        z-index: 5;
-        opacity: 0.9;
-        transform: scale(0.9);
-    }
-
-    /* 前面のリンク */
     .pageTransition__link.front {
         transform: translateX(0) scale(1);
         z-index: 10;
         opacity: 1;
     }
-
-    /* 後面のリンクが左から前に */
     .pageTransition__link.toFront {
         transform: translateX(-50%) scale(0.9);
         z-index: 5;
         opacity: 1;
     }
-
-    /* 前面のリンクが右から後ろへ */
     .pageTransition__link.toBack {
         transform: translateX(50%) scale(0.9);
         z-index: 1;
         opacity: 0.9;
     }
-
     .mainVisual__links {
-        margin-top: 250px;
+        column-gap: unset;
+        margin-top: 380px;
     }
-
-    .mainVisual__links .pageTransition__link:last-child {
+    .mainVisual__links::before {
+        content: "";
         position: absolute;
-        bottom: 30px;
-        left: 30px;
+        display: inline-block;
+        top: -135px;
+        right: -75px;
+        width: 342px;
+        height: 232px;
+        border-radius: 50%;
+        border: 1px solid #FFFFFF
     }
-
+    .mainVisual__links .pageTransition__link:first-child {
+        position: absolute;
+        bottom: 175px;
+        left: -45px;
+        z-index: 2;
+    }
     .pageTransition__text {
         font-size: 16px;
         line-height: 16px;
     }
-
     .pageTransitionButton {
-        width: 220px;
-        height: 220px;
+        width: 285px;
+        height: 265px;
     }
-
+    .--bottle {
+        width: 197px;
+        height: 187px;
+        background-color: #878787;
+        box-shadow: 0 0 20px 20px #878787
+    }
     .pageTransitionButton::before {
         display: none;
     }
     .pageTransitionButton::after {
         display: none;
     }
-
     .pageTransition__container {
         opacity: 1;
         pointer-events: auto;
     }
-
     .pageTransition__image {
         height: 100px;
     }
-
     .pageTransition__text {
         font-size: 16px;
     }
-    
-
     .mainVisual__sideArea {
         position: absolute;
         top: 0;
         bottom: 0;
-        width: 50px;
+        width: 130px;
         opacity: 0;
         pointer-events: auto;
     }
-
     .mainVisual__sideArea--left {
         left: 0;
     }
-
     .mainVisual__sideArea--right {
         right: 0;
     }
-
-    /* アニメーション設定: クリックでpageTransition__linkの位置が入れ替わる */
     .pageTransition__link.swap {
         animation: swapLinks 0.5s ease-in-out forwards;
     }
-
     @keyframes swapLinks {
         0% {
             transform: translateX(0);
